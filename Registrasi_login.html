@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mulai Sekarang - Login & Registrasi</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <h1><span class="blue">SI</span>-Sekolah</h1>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="#">Modul</a></li>
+          <li><a href="#">Kontak</a></li>
+          <li><a href="#">Tentang</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-container">
+    <div class="container">
+      <div class="auth-box">
+        <div class="tab-buttons">
+          <button id="loginBtn" class="tab-btn active">Login</button>
+          <button id="registerBtn" class="tab-btn">Registrasi</button>
+        </div>
+
+        <form id="loginForm" class="auth-form active" action="#" method="POST">
+          <h2>Login</h2>
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" name="email" required placeholder="Masukkan email" />
+          
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="password" required placeholder="Masukkan password" />
+          
+          <button type="submit" class="btn-primary btn-block">Masuk</button>
+        </form>
+
+        <form id="registerForm" class="auth-form" action="#" method="POST" style="display:none;">
+          <h2>Registrasi</h2>
+          <label for="registerName">Nama Lengkap</label>
+          <input type="text" id="registerName" name="name" required placeholder="Masukkan nama lengkap" />
+          
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" name="email" required placeholder="Masukkan email" />
+          
+          <label for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" name="password" required placeholder="Buat password" />
+          
+          <label for="registerConfirmPassword">Konfirmasi Password</label>
+          <input type="password" id="registerConfirmPassword" name="confirm_password" required placeholder="Konfirmasi password" />
+          
+          <button type="submit" class="btn-primary btn-block">Daftar</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Sistem Informasi Sekolah | Dibuat oleh Puan Akeyla</p>
+    </div>
+  </footer>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    loginBtn.addEventListener('click', () => {
+      loginBtn.classList.add('active');
+      registerBtn.classList.remove('active');
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+    });
+
+    registerBtn.addEventListener('click', () => {
+      registerBtn.classList.add('active');
+      loginBtn.classList.remove('active');
+      registerForm.style.display = 'block';
+      loginForm.style.display = 'none';
+    });
+
+    // Registrasi
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim().toLowerCase();
+      const password = document.getElementById('registerPassword').value;
+      const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Password dan konfirmasi password tidak cocok!');
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users') || '[]');
+      const userExists = users.find(user => user.email === email);
+
+      if (userExists) {
+        alert('Email sudah terdaftar, silakan login.');
+        return;
+      }
+
+      users.push({ name, email, password });
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Registrasi berhasil! Silakan login.');
+
+      registerForm.reset();
+      loginBtn.click(); // switch ke login
+    });
+
+    // Login
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const password = document.getElementById('loginPassword').value;
+
+      let users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(user => user.email === email && user.password === password);
+
+      if (user) {
+        alert(`Selamat datang, ${user.name}! Kamu berhasil login.`);
+        window.location.href = "Admin.html";  // Redirect ke Admin.html setelah login sukses
+      } else {
+        alert('Email atau password salah!');
+      }
+    });
+  </script>
+</body>
+</html>

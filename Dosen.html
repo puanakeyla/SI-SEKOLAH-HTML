@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halaman Dosen</title>
+  <link rel="stylesheet" href="css/Dosen.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a2e0e1f4d1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <h1><span class="blue">SI</span>-Sekolah</h1>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="#">Modul</a></li>    
+          <li><a href="#">Kontak</a></li>
+          <li><a href="#">Tentang</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <div class="main-header">
+      <a href="Admin.html" class="back-link" title="Kembali ke Admin">&lt;</a>
+      <h2>Data Dosen</h2>
+    </div>
+    <table class="dosen-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Dosen</th>
+          <th>NIDN</th>
+          <th>Prodi</th>
+          <th>Email</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Dr. Budi Santoso</td>
+          <td>12345678</td>
+          <td>Teknik Informatika</td>
+          <td>budi@si-sekolah.ac.id</td>
+          <td>
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Hapus</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Prof. Lina Kartika</td>
+          <td>87654321</td>
+          <td>Teknik Elektro</td>
+          <td>lina@si-sekolah.ac.id</td>
+          <td>
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Hapus</button>
+          </td>
+        </tr>
+        <!-- Tambahkan baris lainnya sesuai kebutuhan -->
+      </tbody>
+    </table>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Sistem Informasi Sekolah | Dibuat oleh Puan Akeyla</p>
+    </div>
+  </footer>
+</body>
+</html>
